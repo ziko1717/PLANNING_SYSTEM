@@ -34,3 +34,21 @@ print(f"Cost per unit output: ${results['total_cost'] / results['total_value']:.
 
 ### Deep dive: Complexe components
 ## The Constraint Matrix
+The A_ub matrix is the heart of the optimization. For infrastructure engineers, it's analogous to an adjacency matrix in network flow problems:
+
+# For 3 industries (Steel, Automotive, Electronics)
+A_ub = [
+    [500, 15000, 200],      # Budget constraint (variable costs)
+    [-800, -25000, -500],   # Output target constraint (negative for ≥)
+    [1, 0, 0],              # Steel max capacity
+    [0, 1, 0],              # Automotive max capacity
+    [0, 0, 1],              # Electronics max capacity
+    [-1, 0, 0],             # Steel min production
+    [0, -1, 0],             # Automotive min production
+    [0, 0, -1],             # Electronics min production
+]
+
+# This is equivalent to defining:
+# - Network link capacities
+# - Traffic routing constraints
+# - QoS requirements
